@@ -1,6 +1,9 @@
 "use client"
 import { useEffect, useState } from "react"
 import styles from '@/styles/question.module.css'
+import arrow_left from '/public/assets/left_arrow.svg'
+import arrow_right from '/public/assets/right_arrow.svg'
+import Image from 'next/image'
 
 interface QuestionProps {
     question: {[key: string] : any}
@@ -28,6 +31,14 @@ export default function Question({ question } : QuestionProps) {
                 {answers.map((item: string, index: number) => {
                     return <div className={styles.answerBox} key={index}>{item}</div>
                 })}
+            </div>
+            <div className={styles.buttonGroup}>
+                <button>
+                <Image src={arrow_left} alt='arrow left'/>
+                </button>
+                <button>
+                <Image src={arrow_right} alt='arrow right'/>
+                </button>
             </div>
         </div>
     )
