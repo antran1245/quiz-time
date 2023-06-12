@@ -12,13 +12,14 @@
 }
 .answerContainer {
     display: grid;
-    row-gap: 10px;
+    row-gap: 30px;
+    column-gap: 30px;
     grid-template-columns: auto auto;
     margin-top: 20px;
 }
 .answerBox {
     border: 1px solid black;
-    width: 50%;
+    width: 100%;
     min-width: fit-content;
     padding: 15px;
     border-radius: 10px;
@@ -37,13 +38,16 @@
     border-radius: 10px;
     box-shadow: 1px 1px 5px black;
 }
-.buttonGroup button:hover {
+.buttonGroup .button:hover {
     background-color: black;
 }
-.buttonGroup button:hover img {
+.buttonGroup .button:hover img {
     filter: invert(100);
 }
+.buttonGroup .disabled {
+    filter: invert(90);
+}
 
-.buttonGroup button, .answerBox {
+.buttonGroup .button, .answerBox {
     cursor: pointer;
 }

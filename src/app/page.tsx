@@ -7,17 +7,16 @@ import Question from '@/components/Question'
 export default function Home() {
   const [questions, setQuestions] = useState<any[]>([])
   useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=2")
-    .then(resp => resp.json())
-    .then(data => {
-      setQuestions(data.results)
-      console.log(data.results)
-    })
-    .catch(err => console.error(err))
+    if(questions.length === 0) {
+      fetch('/api/question')
+      .then(resp => resp.json())
+      .then(data => setQuestions(data.data.results))
+      .catch(err => console.log(err))
+    }
   }, [])
   return (
     <main className={styles.main}>
-      <Question question={questions[0]}/>
+      <Question questions={questions}/>
     </main>
   )
 }
