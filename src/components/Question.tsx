@@ -12,6 +12,7 @@ interface QuestionProps {
 export default function Question({ questions } : QuestionProps) {
     const [answers, setAnswers] = useState<any[]>([])
     const [curr, setCurr] = useState<number>(0)
+
     useEffect(() => {
         let possibleAnswer = [...(questions[curr]?.incorrect_answers || []), questions[curr]?.correct_answer]
         let len = possibleAnswer.length
@@ -21,17 +22,20 @@ export default function Question({ questions } : QuestionProps) {
         }
         setAnswers(possibleAnswer)
     }, [questions, curr])
+
     return(
         <div className={styles.questionContainer}>
-            <hgroup className={styles.heading}>
-                <h1>Question: </h1>
-                <h2 className={styles.question}>{questions[curr]?.question.replaceAll('&quot;', `"`)}</h2>
-                <p className={styles.subtitle}>{questions[curr]?.category} - Difficulty: {questions[curr]?.difficulty}</p>
-            </hgroup>
-            <div className={styles.answerContainer}>
-                {answers.map((item: string, index: number) => {
-                    return <div className={styles.answerBox} key={index}>{item}</div>
-                })}
+            <div>
+                <hgroup className={styles.heading}>
+                    <h1>Question: </h1>
+                    <h2 className={styles.question}>{questions[curr]?.question.replaceAll('&quot;', `"`)}</h2>
+                    <p className={styles.subtitle}>{questions[curr]?.category} - Difficulty: {questions[curr]?.difficulty}</p>
+                </hgroup>
+                <div className={styles.answerContainer}>
+                    {answers.map((item: string, index: number) => {
+                        return <div className={styles.answerBox} key={index}>{item}</div>
+                    })}
+                </div>
             </div>
             <div className={styles.buttonGroup}>
                 <button className={curr === 0? styles.disabled : styles.button} disabled={curr === 0} onClick={() => setCurr(curr-1)}>
