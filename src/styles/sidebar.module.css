@@ -1,0 +1,17 @@
+.sidebarContainer {
+    width: 40%;
+    padding-left: 30px;
+}
+.questionsListing {
+    margin-top: 20px;
+}
+.questionsListing p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 50%;
+    cursor: pointer;
+}
+.questionsListing p:hover {
+    white-space: pre-wrap;
+}
