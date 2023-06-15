@@ -9,9 +9,12 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 50%;
+    width: 60%;
     cursor: pointer;
+    margin-top: 10px;
+    font-weight: 600;
 }
 .questionsListing p:hover {
     white-space: pre-wrap;
+    opacity: 60%;
 }

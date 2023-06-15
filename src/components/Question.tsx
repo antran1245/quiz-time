@@ -6,12 +6,13 @@ import arrow_right from '/public/assets/right_arrow.svg'
 import Image from 'next/image'
 
 interface QuestionProps {
-    questions: {[key: string] : any}[]
+    questions: {[key: string] : any}[];
+    curr: number;
+    setCurr: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function Question({ questions } : QuestionProps) {
+export default function Question({ questions, curr, setCurr } : QuestionProps) {
     const [answers, setAnswers] = useState<any[]>([])
-    const [curr, setCurr] = useState<number>(0)
 
     useEffect(() => {
         let possibleAnswer = [...(questions[curr]?.incorrect_answers || []), questions[curr]?.correct_answer]
@@ -27,7 +28,7 @@ export default function Question({ questions } : QuestionProps) {
         <div className={styles.questionContainer}>
             <div>
                 <hgroup className={styles.heading}>
-                    <h1>Question: </h1>
+                    <h1>Question {curr+1}: </h1>
                     <h2 className={styles.question}>{questions[curr]?.question.replaceAll('&quot;', `"`)}</h2>
                     <p className={styles.subtitle}>{questions[curr]?.category} - Difficulty: {questions[curr]?.difficulty}</p>
                 </hgroup>

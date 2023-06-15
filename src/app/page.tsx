@@ -7,6 +7,8 @@ import Sidebar from '@/components/Sidebar'
 
 export default function Home() {
   const [questions, setQuestions] = useState<any[]>([])
+  const [curr, setCurr] = useState<number>(0)
+
   useEffect(() => {
     if(questions.length === 0) {
       fetch('/api/question')
@@ -15,10 +17,11 @@ export default function Home() {
       .catch(err => console.log(err))
     }
   }, [])
+
   return (
     <main className={styles.main}>
-      <Question questions={questions}/>
-      <Sidebar questions={questions}/>
+      <Question questions={questions} curr={curr} setCurr={setCurr}/>
+      <Sidebar questions={questions} setCurr={setCurr}/>
     </main>
   )
 }
