@@ -47,6 +47,16 @@
     filter: invert(90);
 }
 
-.buttonGroup .button, .answerBox {
+.buttonGroup button, .answerBox {
     cursor: pointer;
+}
+
+.submitButton {
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.submitButton:hover {
+    background-color: black;
+    color: white;
 }

@@ -1,5 +1,6 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { AnswerContext } from "@/contexts/answer"
 import styles from '@/styles/question.module.css'
 import arrow_left from '/public/assets/left_arrow.svg'
 import arrow_right from '/public/assets/right_arrow.svg'
@@ -13,6 +14,7 @@ interface QuestionProps {
 
 export default function Question({ questions, curr, setCurr } : QuestionProps) {
     const [answers, setAnswers] = useState<any[]>([])
+    const context = useContext(AnswerContext)
 
     useEffect(() => {
         let possibleAnswer = [...(questions[curr]?.incorrect_answers || []), questions[curr]?.correct_answer]
@@ -24,6 +26,14 @@ export default function Question({ questions, curr, setCurr } : QuestionProps) {
         setAnswers(possibleAnswer)
     }, [questions, curr])
 
+    const submitAnswer = (text: string) => {
+        if(context) {
+            let currAnswers = [...context.answers]
+            currAnswers[curr] = text === questions[curr]?.correct_answer
+            context.setAnswers([...currAnswers])
+            console.log(currAnswers)
+        }
+    }
     return(
         <div className={styles.questionContainer}>
             <div>
@@ -34,17 +44,20 @@ export default function Question({ questions, curr, setCurr } : QuestionProps) {
                 </hgroup>
                 <div className={styles.answerContainer}>
                     {answers.map((item: string, index: number) => {
-                        return <div className={styles.answerBox} key={index}>{item}</div>
+                        return <div className={styles.answerBox} key={index} onClick={() => submitAnswer(item)}>{item}</div>
                     })}
                 </div>
             </div>
             <div className={styles.buttonGroup}>
                 <button className={curr === 0? styles.disabled : styles.button} disabled={curr === 0} onClick={() => setCurr(curr-1)}>
-                <Image src={arrow_left} alt='arrow left'/>
+                    <Image src={arrow_left} alt='arrow left'/>
                 </button>
-                <button className={curr === questions.length-1? styles.disabled : styles.button} disabled={curr === questions.length-1} onClick={() => setCurr(curr+1)}>
-                <Image src={arrow_right} alt='arrow right'/>
-                </button>
+                {curr === questions.length-1?
+                    <button className={styles.submitButton}>Submit</button>:
+                    <button className={styles.button} onClick={() => setCurr(curr+1)}>
+                        <Image src={arrow_right} alt='arrow right'/>
+                    </button>
+                }
             </div>
         </div>
     )
