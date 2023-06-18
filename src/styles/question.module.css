@@ -17,7 +17,7 @@
     margin-top: 20px;
 }
 .answerBox {
-    border: 1px solid black;
+    border: 1px solid #526D82;
     width: 100%;
     min-width: fit-content;
     padding: 15px;
@@ -25,7 +25,7 @@
     box-shadow: 3px 3px 7px black;
 }
 .answerBox:hover {
-    background-color: rgba(0, 0, 0, .7);
+    background-color: #526D82;
     color: white;
 }
 
@@ -36,9 +36,11 @@
 .buttonGroup button {
     border-radius: 10px;
     box-shadow: 1px 1px 5px black;
+    background-color: #DDE6ED;
+    color: #27374D;
 }
 .buttonGroup .button:hover {
-    background-color: black;
+    background-color: #526D82;
 }
 .buttonGroup .button:hover img {
     filter: invert(100);
@@ -57,6 +59,6 @@
     font-weight: 500;
 }
 .submitButton:hover {
-    background-color: black;
+    background-color: #526D82;
     color: white;
 }
