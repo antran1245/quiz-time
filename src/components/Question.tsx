@@ -5,6 +5,7 @@ import styles from '@/styles/question.module.css'
 import arrow_left from '/public/assets/left_arrow.svg'
 import arrow_right from '/public/assets/right_arrow.svg'
 import Image from 'next/image'
+import { useRouter } from "next/navigation"
 
 interface QuestionProps {
     questions: {[key: string] : any}[];
@@ -15,6 +16,7 @@ interface QuestionProps {
 export default function Question({ questions, curr, setCurr } : QuestionProps) {
     const [answers, setAnswers] = useState<any[]>([])
     const context = useContext(AnswerContext)
+    const router = useRouter()
 
     useEffect(() => {
         let possibleAnswer = [...(questions[curr]?.incorrect_answers || []), questions[curr]?.correct_answer]
@@ -53,7 +55,7 @@ export default function Question({ questions, curr, setCurr } : QuestionProps) {
                     <Image src={arrow_left} alt='arrow left'/>
                 </button>
                 {curr === questions.length-1?
-                    <button className={styles.submitButton}>Submit</button>:
+                    <button className={styles.submitButton} onClick={() => router.push('/result')}>Submit</button>:
                     <button className={styles.button} onClick={() => setCurr(curr+1)}>
                         <Image src={arrow_right} alt='arrow right'/>
                     </button>
