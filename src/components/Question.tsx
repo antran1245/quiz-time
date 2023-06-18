@@ -31,9 +31,11 @@ export default function Question({ questions, curr, setCurr } : QuestionProps) {
     const submitAnswer = (text: string) => {
         if(context) {
             let currAnswers = [...context.answers]
-            currAnswers[curr] = text === questions[curr]?.correct_answer
+            let currTotal = context.total
+            currAnswers[curr] = text
+            currTotal = (text === questions[curr]?.correct_answer? ++currTotal : currTotal)
             context.setAnswers([...currAnswers])
-            console.log(currAnswers)
+            context.setTotal(currTotal)
         }
     }
     return(
