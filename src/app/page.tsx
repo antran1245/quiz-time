@@ -13,11 +13,11 @@ export default function Home() {
 
   useEffect(() => {
     if(questions.length === 0) {
-      fetch('/api/question')
+      fetch("https://opentdb.com/api.php?amount=2")
       .then(resp => resp.json())
       .then(data => {
-        context?.setAnswers(new Array(data.data.results.length))
-        setQuestions(data.data.results)
+        context?.setAnswers(new Array(data.results.length))
+        setQuestions(data.results)
       })
       .catch(err => console.log(err))
     }
