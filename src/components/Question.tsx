@@ -15,6 +15,7 @@ interface QuestionProps {
 
 export default function Question({ questions, curr, setCurr } : QuestionProps) {
     const [answers, setAnswers] = useState<any[]>([])
+    const [selected, setSelected] = useState<number | null>(null)
     const context = useContext(AnswerContext)
     const router = useRouter()
 
@@ -28,16 +29,24 @@ export default function Question({ questions, curr, setCurr } : QuestionProps) {
         setAnswers(possibleAnswer)
     }, [questions, curr])
 
-    const submitAnswer = (text: string) => {
+    const submitAnswer = (text: string, num: number) => {
         if(context) {
             let currAnswers = [...context.answers]
             let currTotal = context.total
-            currAnswers[curr] = text
-            currTotal = (text === questions[curr]?.correct_answer? ++currTotal : currTotal)
+            if(num !== selected) {
+                currAnswers[curr] = text
+                currTotal = (text === questions[curr]?.correct_answer? ++currTotal : currTotal)
+                setSelected(num)
+            } else {
+                currAnswers[curr] = null
+                currTotal = (text === questions[curr]?.correct_answer? --currTotal : currTotal)
+                setSelected(null)
+            }
             context.setAnswers([...currAnswers])
             context.setTotal(currTotal)
         }
     }
+    
     return(
         <div className={styles.questionContainer}>
             <div>
@@ -48,7 +57,7 @@ export default function Question({ questions, curr, setCurr } : QuestionProps) {
                 </hgroup>
                 <div className={styles.answerContainer}>
                     {answers.map((item: string, index: number) => {
-                        return <div className={styles.answerBox} key={index} onClick={() => submitAnswer(item)}>{item}</div>
+                        return <div className={`${styles.answerBox} ${selected === index? styles.selectedButton : ''}`} key={index} onClick={() => submitAnswer(item, index)}>{item}</div>
                     })}
                 </div>
             </div>

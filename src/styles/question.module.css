@@ -48,11 +48,13 @@
 .buttonGroup .disabled {
     filter: invert(90);
 }
-
 .buttonGroup button, .answerBox {
     cursor: pointer;
 }
-
+.selectedButton {
+    background-color: #526D82;
+    color: white;
+}
 .submitButton {
     padding: 10px 15px;
     font-size: 20px;
