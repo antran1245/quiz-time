@@ -9,14 +9,15 @@ import { Contexts } from '@/contexts/context'
 export default function Home() {
   const [questions, setQuestions] = useState<any[]>([])
   const [curr, setCurr] = useState<number>(0)
-  const answer = useContext(Contexts)
+  const context = useContext(Contexts)
 
   useEffect(() => {
     if(questions.length === 0) {
       fetch("https://opentdb.com/api.php?amount=2")
       .then(resp => resp.json())
       .then(data => {
-        answer?.setAnswers(new Array(data.results.length))
+        context?.setAnswers(new Array(data.results.length))
+        context?.setQuestions(data.results)
         setQuestions(data.results)
       })
       .catch(err => console.log(err))

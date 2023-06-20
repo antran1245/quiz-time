@@ -1,4 +1,5 @@
 import styles from '@/styles/sidebar.module.css'
+
 interface SidebarProps {
     questions: {[key: string] : any}[];
     setCurr: React.Dispatch<React.SetStateAction<number>>;
