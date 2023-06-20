@@ -15,7 +15,7 @@ interface QuestionProps {
 
 export default function Question({ questions, curr, setCurr } : QuestionProps) {
     const [answers, setAnswers] = useState<any[]>([])
-    const [selected, setSelected] = useState<number | null>(null)
+    const [selected, setSelected] = useState<any[]>([])
     const context = useContext(Contexts)
     const router = useRouter()
 
@@ -33,15 +33,16 @@ export default function Question({ questions, curr, setCurr } : QuestionProps) {
         if(context) {
             let currAnswers = [...context.answers]
             let currTotal = context.total
-            if(num !== selected) {
+            let currSelected = [...selected]
+            if(selected[curr] !== num) {
                 currAnswers[curr] = text
                 currTotal = (text === questions[curr]?.correct_answer? ++currTotal : currTotal)
-                setSelected(num)
+                currSelected[curr] = num
             } else {
                 currAnswers[curr] = null
                 currTotal = (text === questions[curr]?.correct_answer? --currTotal : currTotal)
-                setSelected(null)
             }
+            setSelected(currSelected)
             context.setAnswers([...currAnswers])
             context.setTotal(currTotal)
         }
@@ -57,7 +58,7 @@ export default function Question({ questions, curr, setCurr } : QuestionProps) {
                 </hgroup>
                 <div className={styles.answerContainer}>
                     {answers.map((item: string, index: number) => {
-                        return <div className={`${styles.answerBox} ${selected === index? styles.selectedButton : ''}`} key={index} onClick={() => submitAnswer(item, index)}>{item}</div>
+                        return <div className={`${styles.answerBox} ${selected[curr] === index? styles.selectedButton : ''}`} key={index} onClick={() => submitAnswer(item, index)}>{item}</div>
                     })}
                 </div>
             </div>
