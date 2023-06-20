@@ -1,6 +1,6 @@
-import Answer from '@/contexts/answer'
-import './globals.css'
 import { Inter } from 'next/font/google'
+import Answer from '@/contexts/context'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 

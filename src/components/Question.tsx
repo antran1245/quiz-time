@@ -1,6 +1,6 @@
 "use client"
 import { useContext, useEffect, useState } from "react"
-import { AnswerContext } from "@/contexts/answer"
+import { Contexts } from "@/contexts/context"
 import styles from '@/styles/question.module.css'
 import arrow_left from '/public/assets/left_arrow.svg'
 import arrow_right from '/public/assets/right_arrow.svg'
@@ -16,7 +16,7 @@ interface QuestionProps {
 export default function Question({ questions, curr, setCurr } : QuestionProps) {
     const [answers, setAnswers] = useState<any[]>([])
     const [selected, setSelected] = useState<number | null>(null)
-    const context = useContext(AnswerContext)
+    const context = useContext(Contexts)
     const router = useRouter()
 
     useEffect(() => {

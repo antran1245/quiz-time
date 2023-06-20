@@ -8,7 +8,7 @@ A Quiz App
 
 # Information
 
-Retrieve quiz questions from an API call. Then display the questions and ask people for answer. Then score the quiz.
+Retrieve quiz questions from an API call. Then display the questions and ask people for answer. Finally, display score the quiz.
 
 # Credit
 
