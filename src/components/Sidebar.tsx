@@ -11,7 +11,7 @@ export default function Sidebar({questions, setCurr} : SidebarProps) {
             <h2>Questions</h2>
             <div className={styles.questionsListing}>
                 {questions.map((item, index) => {
-                    return <p key={index} onClick={()=> setCurr(index)}>{index+1}. {item.question}</p>
+                    return <p key={index} onClick={()=> setCurr(index)}>{index+1}. {item.question.replaceAll('&quot;', `"`).replaceAll(/(&#039;|&apos;)/g, "'")}</p>
                 })}
             </div>
         </nav>

@@ -57,7 +57,7 @@ export default function Question({ questions, curr, setCurr } : QuestionProps) {
             <div>
                 <hgroup className={styles.heading}>
                     <h1>Question {curr+1}: </h1>
-                    <h2 className={styles.question}>{questions[curr]?.question.replaceAll('&quot;', `"`)}</h2>
+                    <h2 className={styles.question}>{questions[curr]?.question.replaceAll('&quot;', `"`).replaceAll(/(&#039;|&apos;)/g, "'")}</h2>
                     <p className={styles.subtitle}>{questions[curr]?.category} - Difficulty: {questions[curr]?.difficulty}</p>
                 </hgroup>
                 <div className={styles.answerContainer}>
