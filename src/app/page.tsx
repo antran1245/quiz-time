@@ -6,12 +6,12 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <form>
-        <div>
+      <form className={styles.optionForm}>
+        <div className={styles.formGroup}>
           <label htmlFor="numberOfQuestions">Number of Questions:</label>
           <input type='number' max={20} min={1} placeholder='Default: 1, Max: 20' defaultValue={1}/>
         </div>
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="category">Select Category</label>
           <select id="category">
             <option value="any">Any Category</option>
@@ -41,7 +41,7 @@ export default function Home() {
             <option value="32">Entertainment: Cartoon & Animations</option>
           </select>
         </div>
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="difficulty">Select Difficulty</label>
           <select id="difficulty">
             <option value="any">Any Difficulty</option>
@@ -50,13 +50,14 @@ export default function Home() {
             <option value="hard">Hard</option>
           </select>
         </div>
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="type">Select Type</label>
           <select id="type">
             <option value="multiple">Multiple Choice</option>
             <option value="boolean">True / False</option>
           </select>
         </div>
+        <button>Generate Quiz</button>
       </form>
     </main>
   )
