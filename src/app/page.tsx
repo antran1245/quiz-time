@@ -1,27 +1,51 @@
 "use client"
-import { FormEvent } from 'react'
+import { FormEvent, useContext } from 'react'
 import styles from './page.module.css'
+import { Contexts } from '@/contexts/context'
+import { useRouter } from 'next/navigation'
 
 
 export default function Home() {
+  const context = useContext(Contexts)
+  const router = useRouter()
 
   const generateQuiz = (e : FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.currentTarget
     const formElements = form.elements as typeof form.elements & {
-      number: HTMLInputElement;
+      numberOfQuestions: HTMLInputElement;
       category: HTMLSelectElement;
       difficulty: HTMLSelectElement;
       type: HTMLSelectElement;
     }
-    console.log(formElements.category.value)
+    let url = "https://opentdb.com/api.php?"
+    url += "amount="+formElements.numberOfQuestions.value.toString()
+    if(formElements.category.value !== "any") {
+      url += "&category="+formElements.category.value.toString()
+    }
+    if(formElements.difficulty.value !== "any") {
+      url += "&difficulty="+formElements.difficulty.value.toString()
+    }
+    if(formElements.type.value !== "any") {
+      url += "&type="+formElements.type.value.toString()
+    }
+    
+    fetch(url)
+    .then(resp => resp.json())
+    .then(data => {
+      context?.setAnswers(new Array(data.results.length))
+      context?.setQuestions(data.results)
+      router.push('/quiz')
+    })
+    .catch(err => console.log(err))
   }
+
   return (
     <main className={styles.main}>
       <form className={styles.optionForm} onSubmit={(e) => generateQuiz(e)}>
         <div className={styles.formGroup}>
           <label htmlFor="numberOfQuestions">Number of Questions:</label>
-          <input type='number' max={20} min={1} placeholder='Default: 1, Max: 20' defaultValue={1}/>
+          <input id='numberOfQuestions' type='number' max={20} min={1} placeholder='Default: 1, Max: 20' defaultValue={1}/>
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="category">Select Category</label>
