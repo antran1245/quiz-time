@@ -1,16 +1,9 @@
 "use client"
-import { FormEvent, useState } from 'react'
+import { FormEvent } from 'react'
 import styles from './page.module.css'
 
-interface OptionData {
-  number: number;
-  category: number | string;
-  difficulty: string;
-  type: string;
-}
 
 export default function Home() {
-  const [options, setOption] = useState<OptionData>({number: 1, category: "any", difficulty: "any", type: "any"})
 
   const generateQuiz = (e : FormEvent<HTMLFormElement>) => {
     e.preventDefault()
