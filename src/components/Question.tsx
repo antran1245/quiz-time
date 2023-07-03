@@ -30,12 +30,21 @@ export default function Question({ curr, setCurr } : QuestionProps) {
 
     const submitAnswer = (text: string, num: number) => {
         if(context) {
+            let worth = 0
+            if(context.questions[curr].difficulty === "easy") {
+                worth = 1
+            } else if (context.questions[curr].difficulty === "medium") {
+                worth = 2
+            } else {
+                worth = 3
+            }
             let currAnswers = [...context.answers]
             let currTotal = context.total
             let currSelected = [...selected]
             if(!selected[curr]) {
                 currTotal = (text === context.questions[curr].correct_answer? ++currTotal : currTotal)
                 currSelected[curr] = num
+                currAnswers[curr] = text
             } else if(selected[curr] !== num) {
                 currAnswers[curr] = text
                 currTotal = (text === context.questions[curr].correct_answer? ++currTotal : --currTotal)
