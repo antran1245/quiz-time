@@ -42,16 +42,16 @@ export default function Question({ curr, setCurr } : QuestionProps) {
             let currTotal = context.total
             let currSelected = [...selected]
             if(!selected[curr]) {
-                currTotal = (text === context.questions[curr].correct_answer? ++currTotal : currTotal)
+                currTotal = (text === context.questions[curr].correct_answer? currTotal+=worth : currTotal)
                 currSelected[curr] = num
                 currAnswers[curr] = text
             } else if(selected[curr] !== num) {
                 currAnswers[curr] = text
-                currTotal = (text === context.questions[curr].correct_answer? ++currTotal : --currTotal)
+                currTotal = (text === context.questions[curr].correct_answer? currTotal+=worth : currTotal-=worth)
                 currSelected[curr] = num
             } else {
                 currAnswers[curr] = null
-                currTotal = (text === context.questions[curr].correct_answer? --currTotal : currTotal)
+                currTotal = (text === context.questions[curr].correct_answer? currTotal-=worth : currTotal)
                 currSelected[curr] = null
             }
             setSelected(currSelected)
