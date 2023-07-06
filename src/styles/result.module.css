@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 6rem;
+  min-height: 100vh;
+}
+.result {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.questionBox {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px black;
+  margin-top: 10px;
+}
