@@ -12,7 +12,7 @@ export default function Sidebar({setCurr} : SidebarProps) {
         <nav className={styles.sidebarContainer}>
             <h2>Questions</h2>
             <div className={styles.questionsListing}>
-                {context?.questions.map((item, index) => {
+                {context.questions.map((item, index) => {
                     return <p key={index} onClick={()=> setCurr(index)}>{index+1}. {item.question.replaceAll('&quot;', `"`).replaceAll(/(&#039;|&apos;)/g, "'")}</p>
                 })}
             </div>

@@ -12,7 +12,9 @@ interface ContextInterface {
 interface AnswerInterface {
     children? : ReactNode
 }
-export const Contexts = createContext<ContextInterface | null>(null)
+
+const defaultContext = {answers: [], setAnswers: () => {}, total: 0, setTotal: () => {}, questions: [], setQuestions: () => {}}
+export const Contexts = createContext<ContextInterface>(defaultContext)
 
 export default function Context({children} : AnswerInterface) {
     const [answers, setAnswers] = useState<any[]>([])
