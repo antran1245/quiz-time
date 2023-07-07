@@ -12,6 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     context.setTotal(0)
+    context.setAnswers([])
   }, [])
   return (
     <main className={styles.main}>

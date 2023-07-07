@@ -14,3 +14,24 @@
   box-shadow: 1px 1px 10px black;
   margin-top: 10px;
 }
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-evenly;
+}
+.buttonGroup button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #27374D;
+  color: white;
+}
+.buttonGroup button:hover {
+  background-color: #9DB2BF;
+  color: #27374D;
+}
