@@ -4,13 +4,23 @@
   padding: 6rem;
   min-height: 100vh;
 }
+.main > * {
+  width: 50%;
+}
+.main ul {
+  list-style-position: inside;
+}
+.main h2 {
+  text-align: center;
+}
+.homepage {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .result {
   flex-direction: column;
   justify-content: flex-start;
-}
-
-.optionForm {
-  width: 50%;
 }
 .formGroup {
   display: flex;

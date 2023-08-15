@@ -41,7 +41,10 @@ export default function Home() {
   }
 
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main} ${styles.homepage}`}>
+      <section>
+        <h2>Scoreboard</h2>
+      </section>
       <form className={styles.optionForm} onSubmit={(e) => generateQuiz(e)}>
         <div className={styles.formGroup}>
           <label htmlFor="numberOfQuestions">Number of Questions:</label>
@@ -96,6 +99,15 @@ export default function Home() {
         </div>
         <button type='submit'>Generate Quiz</button>
       </form>
+      <section>
+        <h2>Information</h2>
+        <h4>Point by question difficulty</h4>
+        <ul>
+          <li>Easy : 1 point</li>
+          <li>Medium : 2 points</li>
+          <li>Hard : 3 points</li>
+        </ul>
+      </section>
     </main>
   )
 }
